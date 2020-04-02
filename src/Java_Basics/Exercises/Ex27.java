@@ -7,21 +7,27 @@ public class Ex27 {
 
     public static void main(String[] args) {
 
-        ArrayList<Double> al1 = new ArrayList<Double>();
+        ArrayList<Integer> al1 = new ArrayList<Integer>();
 
         for(int i =0; i<20; i++){
-            double temp =0;
+            int temp =40;
 
-            for(int j =0; j<20; j++){
-                temp = temp + (Math.random()*8.2);
+            for(int j =0; j<100; j++){
+                if(Math.random() < 0.5)
+                temp++;
             }
-
             al1.add(temp);
-
             }
 
         System.out.println(al1);
+
+        for (double num : al1) {
+            if(85 <= num && 90 >= num){
+                System.out.println(num);
         }
 
+        }
+
+        }
     }
 

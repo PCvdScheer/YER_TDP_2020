@@ -13,9 +13,6 @@ public class Ex21 {
 
         System.out.println("The sum of its individual components is: " + sum(a));
 
-
-
-
     }
 
     public static int sum(String number){
