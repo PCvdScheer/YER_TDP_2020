@@ -22,7 +22,7 @@ public class Ex19 {
         }
 }
 
-// leuke test woord: otorhinolaryngological 
+// leuke test woord: otorhinolaryngological
 
 
 
