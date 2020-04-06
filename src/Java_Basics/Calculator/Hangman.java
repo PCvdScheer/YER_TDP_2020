@@ -95,7 +95,11 @@ public class Hangman extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String s1 = (String) tf1.getText();
         if(s1.length() > 1) {
-            System.out.println("You can only guess one letter at a time");
+            message.setText("You can only guess one letter at a time");
+
+            //message.setText(this.getGuesses() + " guesses left: ");
+
+
         }else{
             game(s1.toLowerCase());
             display.setText(this.temp.toString());
@@ -103,18 +107,21 @@ public class Hangman extends JFrame implements ActionListener {
         }
 
         if(!this.getTemp().toString().contains("*")){
-            
+            try {
+                Hangman hangman = new Hangman();
+                display.setText(this.temp.toString());
+                message.setText("You have won the game");
+                System.out.println("You have won the game");
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
             }
         }
 
-
-    public JLabel getDisplay() {
-        return display;
+        if(this.getGuesses() == 0){
+            message.setText("Your lack of vocaublary has killed you!");
+        }
     }
 
-    public JLabel getMessage() {
-        return message;
-    }
 
     public StringBuilder getTemp() {
         return temp;
@@ -124,42 +131,12 @@ public class Hangman extends JFrame implements ActionListener {
         return guesses;
     }
 
-    public int getVariable() {
-        return variable;
-    }
-
-    public JTextField getTf1() {
-        return tf1;
-    }
-
-    public void setDisplay(JLabel display) {
-        this.display = display;
-    }
-
-    public void setMessage(JLabel message) {
-        this.message = message;
-    }
-
-    public void setWord(String word) {
-        this.word = word;
-    }
-
-    public void setTemp(StringBuilder temp) {
-        this.temp = temp;
-    }
-
     public void setGuesses(int guesses) {
         this.guesses = guesses;
     }
 
-    public void setVariable(int variable) {
-        this.variable = variable;
-    }
-
-    public void setTf1(JTextField tf1) {
-        this.tf1 = tf1;
-    }
 }
+
 
 
 
