@@ -14,8 +14,8 @@ Stap4: Check oplossing:
 
 
 JTextField: input van gebruiker
-
+JButton: Enter knop voor doorvoeren textfield
 JLabel: Output van de app
 
-JButton: New Game -> Reset het programma
+
 

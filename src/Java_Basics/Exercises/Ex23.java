@@ -27,8 +27,6 @@ public class Ex23 {
         hm1.put(person4.getName(), person4);
         hm1.put(person5.getName(), person5);
 
-
-
         Scanner scanner = new Scanner(System.in);
         System.out.print("What name are you looking for: ");
         String a = scanner.nextLine();

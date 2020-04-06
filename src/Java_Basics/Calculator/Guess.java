@@ -26,11 +26,7 @@ public class Guess extends JFrame implements ActionListener {
         panel.add(tf1);
         tf1.addActionListener(this);
 
-        JButton button = new JButton("Enter");
-        panel.add(button);
-        button.addActionListener(this);
-
-        getContentPane().add(panel, BorderLayout.SOUTH);
+              getContentPane().add(panel, BorderLayout.SOUTH);
             }
 
     public static void main(String[] args) {
@@ -45,17 +41,22 @@ public class Guess extends JFrame implements ActionListener {
         String s1= tf1.getText();
         int a=Integer.parseInt(s1);
         display.setText(method(a));
-        
+
     }
 
     public String method(int input) {
         if (input > 1000 || input < 0) {
+            tf1.setText("");
             return "Enter a number within the range of 1-1000";
         }else if(input== variable){
-            return "You have guess correctly!";
+            tf1.setText("");
+            int variable = (int) (Math.random()*1000);
+            return "Correct! try again...";
         } else if(input <= variable){
+            tf1.setText("");
             return "You have guessed too low!";
         } else if(input >= variable){
+            tf1.setText("");
             return "You have guessed to high!";
         }
         else{return "Enter a valid input";
