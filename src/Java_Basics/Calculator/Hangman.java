@@ -26,20 +26,25 @@ public class Hangman extends JFrame implements ActionListener {
 
     Hangman() throws FileNotFoundException {
         JPanel panel = new JPanel();
+        ImagePanel image = new ImagePanel(
+                new ImageIcon("D:\\Java\\YER_TDP_2020\\src\\Java_Basics\\Calculator\\background.png").getImage());
+        JFrame frame = new JFrame();
+        //frame.getRootPane().add(image);
         display.setPreferredSize(new Dimension(400, 30));
         display.setHorizontalAlignment(JLabel.CENTER);
         display.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 40));
-        display.setForeground(new Color(142, 64, 145));
+        display.setForeground(new Color(0, 0, 0));
 
         message.setPreferredSize(new Dimension(400, 40));
         message.setHorizontalAlignment(JLabel.CENTER);
         message.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
-        message.setForeground(new Color(0, 145, 6));
+        message.setForeground(new Color(0, 0, 0));
 
         getContentPane().add(message, BorderLayout.NORTH);
-        getContentPane().add(display, BorderLayout.CENTER);
+        getContentPane().add(display, BorderLayout.WEST);
+        getContentPane().add(image, BorderLayout.EAST);
 
-        tf1 = new JTextField("Enter a guess");
+        tf1 = new JTextField("Enter a letter");
         tf1.setPreferredSize(new Dimension(100, 30));
         panel.add(tf1);
         tf1.addActionListener(this);
@@ -76,7 +81,7 @@ public class Hangman extends JFrame implements ActionListener {
             int n = JOptionPane.showConfirmDialog(
                     frame,
                     "Would you like to start a new game?",
-                    "You have won the game!",
+                    "Your words cut through rope and save you!",
                     JOptionPane.OK_CANCEL_OPTION);
             if(n == JOptionPane.YES_OPTION){
                 try {
@@ -87,16 +92,14 @@ public class Hangman extends JFrame implements ActionListener {
                 }}else if(n == JOptionPane.CANCEL_OPTION){System.exit(0);}
         }
 
-
         if(this.guesses == 0){
-
             JFrame frame= new JFrame();
             //Custom button text
             //default icon, custom title
             int n = JOptionPane.showConfirmDialog(
                     frame,
                     "Would you like to start a new game?",
-                    "Your lack of vocabulary has killed you!",
+                    "Your lack of vocabulary has left you hanging!",
                     JOptionPane.OK_CANCEL_OPTION);
             if(n == JOptionPane.YES_OPTION){
                 try {
@@ -106,9 +109,7 @@ public class Hangman extends JFrame implements ActionListener {
                     ex.printStackTrace();
                 }}else if(n == JOptionPane.CANCEL_OPTION){System.exit(0);}
             }
-
         }
-
 
     public void generator() throws FileNotFoundException {
         ArrayList<String> dictionary = new ArrayList<String>();
@@ -146,6 +147,29 @@ public class Hangman extends JFrame implements ActionListener {
             this.guesses = this.guesses-1;
             tf1.setText("");
         }
+    }
+}
+
+class ImagePanel extends JPanel {
+
+    private Image img;
+
+    public ImagePanel(String img) {
+        this(new ImageIcon(img).getImage());
+    }
+
+    public ImagePanel(Image img) {
+        this.img = img;
+        Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setSize(size);
+        setLayout(null);
+    }
+
+    public void paintComponent(Graphics g) {
+        g.drawImage(img, 0, 0, null);
     }
 }
 
