@@ -1,0 +1,21 @@
+
+
+**********Guess game vereisten ***********
+
+Doel: Getal onder de 1000 raden
+
+stap1: Start nieuw spel (druk op knop)
+Stap2: Message van app -> "Guess a number under a thousand"
+Stap3: Input van de gebruiker -> Getal onder de 1000
+Stap4: Check oplossing:
+            Goed: "Congratulations you have guessed the solution!"
+            Fout: "Wrong answer, you are" a) too low b) too high.
+
+
+
+JTextField: input van gebruiker
+JButton: Enter knop voor doorvoeren textfield
+JLabel: Output van de app
+
+
+
