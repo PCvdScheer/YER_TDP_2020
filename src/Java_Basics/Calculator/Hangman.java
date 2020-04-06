@@ -69,36 +69,46 @@ public class Hangman extends JFrame implements ActionListener {
         }
 
         if(!this.temp.toString().contains("*")){
-            message.setText("You have won the game");
-            try {
-                TimeUnit.SECONDS.wait(1);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }
-            try {
-                generator();
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            }
-            System.out.println(this.getWord());
+
+            JFrame frame= new JFrame();
+            //Custom button text
+            //default icon, custom title
+            int n = JOptionPane.showConfirmDialog(
+                    frame,
+                    "Would you like to start a new game?",
+                    "You have won the game!",
+                    JOptionPane.OK_CANCEL_OPTION);
+            if(n == JOptionPane.YES_OPTION){
+                try {
+                    generator();
+                    tf1.setText("");
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                }}else if(n == JOptionPane.CANCEL_OPTION){System.exit(0);}
         }
+
 
         if(this.guesses == 0){
-            message.setText("Your lack of vocabulary has killed you!");
-            try {
-                TimeUnit.SECONDS.wait(1);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
+
+            JFrame frame= new JFrame();
+            //Custom button text
+            //default icon, custom title
+            int n = JOptionPane.showConfirmDialog(
+                    frame,
+                    "Would you like to start a new game?",
+                    "Your lack of vocabulary has killed you!",
+                    JOptionPane.OK_CANCEL_OPTION);
+            if(n == JOptionPane.YES_OPTION){
+                try {
+                    generator();
+                    tf1.setText("");
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                }}else if(n == JOptionPane.CANCEL_OPTION){System.exit(0);}
             }
 
-            try {
-                generator();
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            }
-            System.out.println(this.getWord());
         }
-    }
+
 
     public void generator() throws FileNotFoundException {
         ArrayList<String> dictionary = new ArrayList<String>();
@@ -113,6 +123,7 @@ public class Hangman extends JFrame implements ActionListener {
         int index = r.nextInt(dictionary.size());
         this.word = dictionary.get(index);
         int length = word.length();
+        System.out.println(this.word);
 
         temp = new StringBuilder();
 
@@ -131,10 +142,11 @@ public class Hangman extends JFrame implements ActionListener {
                     tf1.setText("");
                 }
             }
-        }else{this.guesses = this.guesses-1;}
+        }else{
+            this.guesses = this.guesses-1;
+            tf1.setText("");
+        }
     }
-
-
 }
 
 
