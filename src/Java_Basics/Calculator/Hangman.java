@@ -6,10 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.util.ArrayList;
+
 import java.io.*;
 import java.util.Scanner;
 import java.util.Random;
-
 public class Hangman extends JFrame implements ActionListener {
 
     JLabel display = new JLabel("WORD PLACEHOLDER");
@@ -49,7 +49,6 @@ public class Hangman extends JFrame implements ActionListener {
 
         getContentPane().add(panel, BorderLayout.SOUTH);
 
-        //Woorden inladen vanuit tekst file
         ArrayList<String> dictionary = new ArrayList<String>();
         File file = new File("D:\\Java\\YER_TDP_2020\\src\\Java_Basics\\Calculator\\Hangman_Wordlist.txt");
         Scanner sc = new Scanner(file);
@@ -97,9 +96,6 @@ public class Hangman extends JFrame implements ActionListener {
         if(s1.length() > 1) {
             message.setText("You can only guess one letter at a time");
 
-            //message.setText(this.getGuesses() + " guesses left: ");
-
-
         }else{
             game(s1.toLowerCase());
             display.setText(this.temp.toString());
@@ -118,10 +114,9 @@ public class Hangman extends JFrame implements ActionListener {
         }
 
         if(this.getGuesses() == 0){
-            message.setText("Your lack of vocaublary has killed you!");
+            message.setText("Your lack of vocabulary has killed you!");
         }
     }
-
 
     public StringBuilder getTemp() {
         return temp;
