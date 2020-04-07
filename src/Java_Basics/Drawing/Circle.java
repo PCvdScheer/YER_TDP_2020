@@ -1,4 +1,4 @@
-package Java_Basics.Dawing;
+package Java_Basics.Drawing;
 
 import java.awt.*;
 
