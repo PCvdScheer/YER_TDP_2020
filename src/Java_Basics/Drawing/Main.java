@@ -72,6 +72,8 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
 
         this.add(toolbar, BorderLayout.SOUTH);
 
+
+
     }
 
 
@@ -102,7 +104,7 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
         //switch statement om te kiezen afhankelijk van de shape waarde
 
 
-        draw(this.shape);
+        figuur = draw(this.shape);
 
         figuren.add(figuur);
         figuur.x1 = e.getX();
@@ -141,6 +143,12 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
                 break;
             case "Color":
                 {System.out.println("Color pressed");}
+                {JFrame popup = new JFrame();
+                JColorChooser tcc = new JColorChooser();
+                popup.add(tcc, BorderLayout.CENTER);
+                popup.setSize(400, 400);
+                popup.setVisible(true);
+                popup.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);}
                 break;
             case "Line thickness":
                 {System.out.println("Line Thickness pressed");}
@@ -158,13 +166,10 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
         switch(shape){
             case "Rectangle":
                 return new Rectangle();
-                break;
             case "Oval":
                 return new Circle();
-                break;
             case "Line":
                 return new Line();
-                break;
             default:
                 return new Line();
         }
