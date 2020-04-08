@@ -10,14 +10,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.awt.Color;
 
-import static javax.print.attribute.standard.Chromaticity.COLOR;
-
 public class Main extends JFrame implements MouseListener, ActionListener, Serializable {
 
 
     Figuur figuur = new Rectangle();
     ArrayList<Figuur> figuren = new ArrayList<>();
-    public static Color color;
+    public Color color = Color.BLACK;
     private String shape = "Line";
     private JMenuBar menuBar; // Window menu bar
     private static final Color BACKGROUND_COLOR = Color.WHITE;
@@ -47,7 +45,6 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
 
         fileMenu.add(i1); fileMenu.add(i2); fileMenu.add(i3); fileMenu.add(i4); fileMenu.add(i5);
 
-
         JMenu optionsMenu = new JMenu("Options"); // Create Elements menu
         menuBar.add(optionsMenu); // Add the element menu
 
@@ -75,8 +72,6 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
         button5.addActionListener(this);
         button6.addActionListener(this);
         this.add(toolbar, BorderLayout.SOUTH);
-
-
     }
 
     public static void main(String[] args) {
@@ -101,11 +96,11 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
     @Override
     public void mousePressed(MouseEvent e) {
         System.out.println("printed from pressed");
-        figuur = draw(this.shape);
+        figuur = select(this.shape);
         figuren.add(figuur);
         figuur.x1 = e.getX();
         figuur.y1 = e.getY();
-        figuur.color = Main.color;
+        figuur.color = color;
     }
 
     @Override
@@ -113,7 +108,7 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
         figuur.x2 = e.getX();
         figuur.y2 = e.getY();
         repaint();
-        System.out.println("Printed from released");
+        System.out.println("Printed from released" + color);
     }
 
     @Override
@@ -140,8 +135,7 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
             case "Color":
                 {System.out.println("Color pressed");
                 Color initialBackground = new Color(0, 0, 0);
-                Color newColor = JColorChooser.showDialog(null, "Set Colour", initialBackground);
-                this.color = newColor;
+                    this.color = JColorChooser.showDialog(null, "Set Colour", initialBackground);
                 }
             break;
             case "Line thickness":
@@ -170,7 +164,7 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
         }
     }
 
-    Figuur draw(String shape){
+    Figuur select(String shape){
         switch(shape){
             case "Rectangle":
                 return new Rectangle();
