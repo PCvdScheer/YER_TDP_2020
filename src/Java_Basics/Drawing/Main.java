@@ -18,8 +18,9 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
     Figuur figuur = new Rectangle();
     ArrayList<Figuur> figuren = new ArrayList<>();
     public static Color color;
-    private String shape;
+    private String shape = "Line";
     private JMenuBar menuBar; // Window menu bar
+    private static final Color BACKGROUND_COLOR = Color.WHITE;
 
     public Main() throws HeadlessException {
         this.addMouseListener(this);
@@ -34,10 +35,15 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
         menuBar.add(fileMenu); // Add the file menu
 
         i1=new JMenuItem("New");
+        i1.addActionListener(this);
         i2=new JMenuItem("Open");
+        i2.addActionListener(this);
         i3=new JMenuItem("Save");
+        i3.addActionListener(this);
         i4=new JMenuItem("Save as");
+        i4.addActionListener(this);
         i5=new JMenuItem("Exit");
+        i5.addActionListener(this);
 
         fileMenu.add(i1); fileMenu.add(i2); fileMenu.add(i3); fileMenu.add(i4); fileMenu.add(i5);
 
@@ -69,13 +75,19 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
         button5.addActionListener(this);
         button6.addActionListener(this);
         this.add(toolbar, BorderLayout.SOUTH);
+
+
     }
 
     public static void main(String[] args) {
         Main teken = new Main();
         teken.setSize(400, 400);
+        teken.isBackgroundSet();
+        teken.getContentPane().setBackground(Color.WHITE);
+
         teken.setVisible(true);
         teken.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
     }
 
     @Override
@@ -123,7 +135,7 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
                 break;
             case "Eraser":
                 {System.out.println("Eraser pressed");}
-                this.shape = "Rectangle";
+                this.shape = "Eraser";
                 break;
             case "Color":
                 {System.out.println("Color pressed");
@@ -134,6 +146,24 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
             break;
             case "Line thickness":
                 {System.out.println("Line Thickness pressed");}
+                break;
+            case "New":
+                System.out.println("New pressed");
+                figuren.clear();
+                repaint();
+                break;
+            case "Open":
+                System.out.println("Open pressed");
+                break;
+            case "Save":
+                System.out.println("Save pressed");
+                break;
+            case "Save as":
+                System.out.println("Save as pressed");
+                break;
+            case "Exit":
+                System.out.println("Exit pressed");
+                System.exit(0);
                 break;
             default:
                 System.out.println("No button pressed");
@@ -148,6 +178,8 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
                 return new Circle();
             case "Line":
                 return new Line();
+            case "Eraser":
+                return new Eraser();
             default:
                 return new Line();
         }
