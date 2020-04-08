@@ -81,7 +81,6 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.setColor(Main.color);
         for(Figuur f: figuren){
             f.draw(g);
         }
@@ -94,6 +93,7 @@ public class Main extends JFrame implements MouseListener, ActionListener, Seria
         figuren.add(figuur);
         figuur.x1 = e.getX();
         figuur.y1 = e.getY();
+        figuur.color = Main.color;
     }
 
     @Override
