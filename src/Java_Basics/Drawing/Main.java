@@ -2,11 +2,14 @@ package Java_Basics.Drawing;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Main extends JFrame implements MouseListener{
+public class Main extends JFrame implements MouseListener, ActionListener, Serializable {
 
     Figuur figuur = new Rectangle();
     ArrayList<Figuur> figuren = new ArrayList<>();
@@ -16,6 +19,9 @@ public class Main extends JFrame implements MouseListener{
 
     public Main() throws HeadlessException {
         this.addMouseListener(this);
+
+
+        //input output stream gebruiken om op te slaan
 
         //menubar code
         menuBar = new JMenuBar();
@@ -38,6 +44,33 @@ public class Main extends JFrame implements MouseListener{
         menuBar.add(optionsMenu); // Add the element menu
 
         //toolbar code
+        JToolBar toolbar = new JToolBar();
+        toolbar.setRollover(true);
+
+
+        JButton button = new JButton("Rectangle");
+        toolbar.add(button);
+        JButton button2 = new JButton("Oval");
+        toolbar.add(button2);
+        JButton button3 = new JButton("Line");
+        toolbar.add(button3);
+        JButton button4 = new JButton("Eraser");
+        toolbar.add(button4);
+        JButton button5 = new JButton("Color");
+        toolbar.add(button5);
+        JButton button6 = new JButton("Line thickness");
+        toolbar.add(button6);
+
+
+        button.addActionListener(this);
+        button2.addActionListener(this);
+        button3.addActionListener(this);
+        button4.addActionListener(this);
+        button5.addActionListener(this);
+        button6.addActionListener(this);
+
+
+        this.add(toolbar, BorderLayout.SOUTH);
 
     }
 
@@ -68,10 +101,8 @@ public class Main extends JFrame implements MouseListener{
 
         //switch statement om te kiezen afhankelijk van de shape waarde
 
-        if(e.getButton() == MouseEvent.BUTTON1){
-            figuur = new Circle();
-        }else{figuur = new Line();}
 
+        draw(this.shape);
 
         figuren.add(figuur);
         figuur.x1 = e.getX();
@@ -88,6 +119,59 @@ public class Main extends JFrame implements MouseListener{
     }
 
     @Override
+    public void actionPerformed(ActionEvent e) {
+        String currentButton = e.getActionCommand();
+
+        switch(currentButton){
+            case "Rectangle":
+                {System.out.println("Rectangle pressed");}
+                this.shape = "Rectangle";
+                break;
+            case "Oval":
+                {System.out.println("Oval pressed");}
+                this.shape = "Oval";
+                break;
+            case "Line":
+                {System.out.println("Line pressed");}
+                this.shape = "Line";
+                break;
+            case "Eraser":
+                {System.out.println("Eraser pressed");}
+                this.shape = "Rectangle";
+                break;
+            case "Color":
+                {System.out.println("Color pressed");}
+                break;
+            case "Line thickness":
+                {System.out.println("Line Thickness pressed");}
+                break;
+            default:
+                System.out.println("No button pressed");
+
+
+        }
+
+
+    }
+
+    Figuur draw(String shape){
+        switch(shape){
+            case "Rectangle":
+                return new Rectangle();
+                break;
+            case "Oval":
+                return new Circle();
+                break;
+            case "Line":
+                return new Line();
+                break;
+            default:
+                return new Line();
+        }
+
+    }
+
+    @Override
     public void mouseEntered(MouseEvent e) {
 
     }
@@ -101,6 +185,7 @@ public class Main extends JFrame implements MouseListener{
     public void mouseClicked(MouseEvent e) {
 
     }
+
 
 
 }
